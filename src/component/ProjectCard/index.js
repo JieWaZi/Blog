@@ -14,7 +14,7 @@ class ProjectCard extends Component {
   }
  
   renderCard = () =>{
-    const showProject=["grpc","Kafka-Cluster","PhotoMosaic","learn-react"]
+    const showProject=["grpc","Kafka-Cluster","PhotoMosaic","Blog"]
     const cards = []
     _.forEach(this.props.indexReducer.project, function(value) {
       if (_.includes(showProject,value.name)){
