@@ -2,31 +2,16 @@ import './index.less';
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import echarts from 'echarts/lib/echarts';
-import'echarts/lib/chart/line'          //引入折线图
-import'echarts/lib/component/tooltip'   //图表提示框（按需）
-import'echarts/lib/component/grid'      //图表网格（按需）
-import * as actions from '../../actions/statisticsAction';
 import { Row, Col } from 'antd';
+import ReactEcharts from 'echarts-for-react';
 
 class Weather extends Component {
     
 
-  componentDidMount(){
-  
-  }
-
-  componentDidUpdate(){
-    this.renderWeatherLinear(this.refs.main)
-    this.renderWeatherLinear(this.refs.main1)
-  }
-
-  renderWeatherLinear = (chart) =>{
-    const myChart = echarts.init(chart);
-
-    const option = {
+  renderWeatherLinear = () =>{
+   return  {
       title: {
-          text: '未来一周气温变化',
+          text: '上海天气预测',
           subtext: '纯属虚构'
       },
       tooltip: {
@@ -38,12 +23,7 @@ class Weather extends Component {
       toolbox: {
           show: true,
           feature: {
-              dataZoom: {
-                  yAxisIndex: 'none'
-              },
-              dataView: {readOnly: false},
               magicType: {type: ['line', 'bar']},
-              restore: {},
               saveAsImage: {}
           }
       },
@@ -107,22 +87,16 @@ class Weather extends Component {
           }
       ]
     };  
-
-    myChart.setOption(option)
   }
 
       render(){
         return (
-          <Row>
-            <Col xs={24} sm={24} md={24} lg={{span:9,offset:2}} xl={{span:9,offset:2}} >
-              <div ref='main' style={{height:'300px'}}>
-              </div>
-          </Col>
-          <Col xs={24} sm={24} md={24} lg={{span:9,offset:2}} xl={{span:9,offset:2}} >
-              <div ref='main1' style={{height:'300px'}}>
-              </div>
-          </Col>
-          </Row>
+            <div>
+                <Row type="flex" justify="space-around">
+                    <Col xs={24} sm={24} md={8} xl={8}><ReactEcharts option={this.renderWeatherLinear()} /></Col>
+                    <Col xs={24} sm={24} md={8} xl={8}><ReactEcharts option={this.renderWeatherLinear()} /></Col>
+                </Row>
+            </div>
         )
     }
 }
