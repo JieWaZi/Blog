@@ -23,7 +23,7 @@ class ProjectCard extends Component {
           <Icon type="fork" style={{marginRight:"10px"}} />{value.name}
          </a>
         cards.push(
-          <Col key={value.name} xs={24} sm={12} lg={6} xl={6} xxl={6} >
+          <Col key={value.name} xs={24} sm={10} lg={5} xl={5} xxl={5} >
             <Parallax animation={{ scale: 1 }} style={{ transform: 'scale(0.3)' }}>
               < Card 
                 hoverable
@@ -55,13 +55,9 @@ class ProjectCard extends Component {
     render(){
         return (
         <div className='project-card'>
-          <Row>
-            <Col xs={{offset:2,span:20}}>
-            <Row gutter={40}>
-            {this.renderCard()}
-            </Row>
-            </Col>
-          </Row>
+              <Row type="flex" justify="space-around">
+                {this.renderCard()}
+              </Row>
         </div>
           );
         }
