@@ -30,7 +30,7 @@ class ProjectCard extends Component {
                 title={title}
                 bordered={true}
                 headStyle={{textAlign:"center"}}
-                bodyStyle={{minHeight:"146px",textAlign:"center"}}
+                bodyStyle={{minHeight:"154px",textAlign:"center"}}
                 className='card'
                 >
                 <Tag className='watchTag'>

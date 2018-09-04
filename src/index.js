@@ -7,10 +7,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk'
 import reducer from './reducers/reducers';
-import ArticleContent from './component/Content/index'
-import CommonLayout from './pages/CommonLayout/index'
-import ArticlePage from './pages/ArticlePage/index'
-import {Route,Link,BrowserRouter} from 'react-router-dom';
+import CommonLayout from './pages/CommonLayout/index';
+import {Route,HashRouter} from 'react-router-dom'
 
 const logger = createLogger()
 let store = createStore(
@@ -18,24 +16,11 @@ let store = createStore(
     applyMiddleware(logger, thunk)
 )
 
-const getRouter = ()=> {
-    return (
-        <BrowserRouter>
-            <div>
-                <div>
-                    <Route exact path="/" component={ArticleContent} />
-                    <Route path="/article" component={ArticlePage} />
-                </div>
-            </div>
-        </BrowserRouter>
-    )
-}
-
 render(
     <Provider store={store}>
-        <BrowserRouter>
-           <CommonLayout/>
-        </BrowserRouter>
+        <HashRouter>
+            <Route path="/" component={CommonLayout} />
+        </HashRouter>
     </Provider>
     ,
     document.getElementById("app")

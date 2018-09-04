@@ -91,7 +91,7 @@ class Weather extends Component {
 
       render(){
         return (
-            <div>
+            <div className='chart'>
                 <Row type="flex" justify="space-around">
                     <Col xs={24} sm={24} md={8} xl={8}><ReactEcharts option={this.renderWeatherLinear()} /></Col>
                     <Col xs={24} sm={24} md={8} xl={8}><ReactEcharts option={this.renderWeatherLinear()} /></Col>

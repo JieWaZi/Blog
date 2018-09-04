@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack= require('webpack');
+const renderer = require('react-markdown').renderer;
+const markedRenderer = require('marked').renderer;
 
 module.exports = {
   entry: './src/index.js',
@@ -58,6 +60,28 @@ module.exports = {
             ],
           },
         }],
+      },{
+        test: /\.md$/,
+        use: [{
+          loader: 'html-loader'
+        }, {
+          loader: 'markdown-loader',
+          options: {
+            pedantic: true,
+            renderer: markedRenderer,
+            highlight: function(code) {
+              return require('highlight.js').highlightAuto(code).value;
+            },
+            pedantic: false,
+            gfm: true,
+            tables: true,
+            breaks: false,
+            sanitize: false,
+            smartLists: true,
+            smartypants: false,
+            xhtml: false
+          }
+        }]
       }
     ]
   },

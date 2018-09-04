@@ -8,7 +8,7 @@ const BgElement = Element.BgElement;
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-class Title extends Component {
+class Slide extends Component {
     constructor() {
         super(...arguments);
         this.imgArray = [
@@ -69,4 +69,4 @@ class Title extends Component {
     }
 export default connect((state)=>{
     return state;
-})(Title)
+})(Slide)

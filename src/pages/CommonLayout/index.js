@@ -2,44 +2,42 @@ import './index.less';
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Layout,Row,Col,Divider,Icon,BackTop } from 'antd';
-import HorizontalSider from '../../component/HorizontalSider/index'
-import PersonInformation from '../../component/PersonInformation/index'
-import ArticleContent from '../../component/Content/index'
-import ProjectCard from '../../component/ProjectCard/index'
-import Weather from '../../component/Statistics/index'
-import Title from '../../component/Title/index'
-import {Route} from 'react-router-dom';
-import ArticlePage from '../ArticlePage';
+import { Layout,Row,Col,Divider,Icon,BackTop, Switch } from 'antd';
+import NavigationBar from '../../component/NavigationBar/index'
+import IndexPage from '../IndexPage/index'
+import ArticlePage from '../ArticlePage/index'
+import Slide from '../../component/Slide/index'
+import {Route,Link} from 'react-router-dom';
+import PropTypes from 'prop-types'
+
 const { Footer } = Layout
 
 class CommonLayout extends Component {
 
+    static contextTypes = {
+        router: PropTypes.object
+      }
+      
+    constructor(props, context) {
+         super(props, context);
+      }
+
     render(){
         return(
-                <Layout className='common-layout'>
-                    <Title/>
-                    <Row>
-                        <Col xs={24} sm={24} md={24} lg={{span:15,offset:3}} xl={{span:15,offset:3}}>
-                            <HorizontalSider/>
-                            <Route exact path="/" component={ArticleContent} />
-                            <Route exact path="/article" component={ArticlePage} />
-                        </Col>
-                        <Col xs={0} sm={0} md={0} lg={{ span: 4, offset: 1}} xl={{ span: 4, offset: 1}}>
-                            <PersonInformation/>
-                        </Col>
-                        <Divider style={{fontSize:'30px',paddingTop: '30px'}}><Icon type="github" /> GitHub</Divider>
-                        <Col xs={24}>
-                            <ProjectCard/>
-                        </Col>
-                        <Divider style={{fontSize:'30px',paddingTop: '30px'}}><Icon type="area-chart" /> Statistics</Divider>
-                        <Route exact path="/" component={Weather} />
-                        <Col xs={24}>
-                            <Footer className='footer'/>
-                        </Col>
-                    </Row>
-                    <BackTop />
+            <Layout className='common-layout'>
+                <Slide/>
+                <Row>
+                    <Col xs={24} sm={24} md={24} lg={{span:20,offset:2}} xl={{span:20,offset:2}}>
+                        <NavigationBar/>
+                    </Col>
+                </Row>
+                <Route exact path="/" component={IndexPage} />
+                <Route exact path="/article" component={ArticlePage}/>
+                <Footer className='footer'/>
+                <BackTop />
+                <Link to='/article'>哈哈哈</Link>
             </Layout>
+
         )
     }
 }

@@ -3,6 +3,7 @@ import './index.less';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Card,Button,Icon } from 'antd';
+import {Redirect} from 'react-router-dom';
 
 
 class ContentCard extends Component {
@@ -11,8 +12,9 @@ class ContentCard extends Component {
   }
 
   handleClick = () => {
-    this.setState({ loading: !this.state.loading });
+    this.context.router.history.push("/otherPath")
   }
+
     render(){
         return (
             <div className='content-cards'>
