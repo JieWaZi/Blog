@@ -6,13 +6,18 @@ import { Layout,Row,Col,Divider,Icon,BackTop, Switch } from 'antd';
 import NavigationBar from '../../component/NavigationBar/index'
 import IndexPage from '../IndexPage/index'
 import ArticlePage from '../ArticlePage/index'
+import ListArticlePage from '../ListArticlePage/index'
 import Slide from '../../component/Slide/index'
-import {Route,Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import PropTypes from 'prop-types'
 
 const { Footer } = Layout
 
 class CommonLayout extends Component {
+
+    componentDidMount(){
+        console.log(this.props.match)
+    }
 
     static contextTypes = {
         router: PropTypes.object
@@ -33,9 +38,9 @@ class CommonLayout extends Component {
                 </Row>
                 <Route exact path="/" component={IndexPage} />
                 <Route exact path="/article" component={ArticlePage}/>
+                <Route exact path="/listArticle" component={ListArticlePage}/>
                 <Footer className='footer'/>
                 <BackTop />
-                <Link to='/article'>哈哈哈</Link>
             </Layout>
 
         )

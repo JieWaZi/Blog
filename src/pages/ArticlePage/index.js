@@ -1,17 +1,19 @@
 import './index.less';
+import 'highlight.js/styles/androidstudio.css'
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Dination from '../../component/Dination/index'
 import PersonInformation from '../../component/PersonInformation/index'
-import {Row,Col} from 'antd'
+import {Row,Col,Divider} from 'antd'
 import { Markdown } from 'react-markdown-reader';
-import 'highlight.js/styles/androidstudio.css'
-import * as hljs from 'highlight.js/lib/highlight'
+import * as actions from '../../actions/articleAction';
+
 
 class ArticlePage extends Component {
 
     componentDidMount(){
-        hljs.initHighlightingOnLoad()
+        this.props.dispatch(actions.getArticle())
     }
 
     render(){   
@@ -20,8 +22,10 @@ class ArticlePage extends Component {
             <Col xs={24} sm={24} md={24} lg={{span:15,offset:2}} xl={{span:15,offset:2}}>
                 <div className='markdown'>
                     <Markdown>
-                        {require('./README.md')}
+                        {this.props.articleReducer.mardown}
                     </Markdown>
+                    <Divider>END</Divider>
+                    <Dination />
                 </div>
             </Col>
             <Col xs={0} sm={0} md={0} lg={{ span: 4, offset: 1}} xl={{ span: 4, offset: 1}}>

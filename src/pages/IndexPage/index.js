@@ -6,7 +6,7 @@ import {Row,Col,Divider,Icon} from 'antd'
 import PersonInformation from '../../component/PersonInformation/index'
 import ArticleContent from '../../component/Content/index'
 import ProjectCard from '../../component/ProjectCard/index'
-import Weather from '../../component/Statistics/index'
+import Weather from '../../component/Weather/index'
 
 class IndexPage extends Component {
 
@@ -23,7 +23,7 @@ class IndexPage extends Component {
                 <Col xs={{span:22,offset:1}} style={{marginTop: '15px'}}>
                     <ProjectCard/>
                 </Col>
-                <Divider style={{fontSize:'30px',paddingTop: '60px'}}><Icon type="area-chart" /> Statistics</Divider>
+                <Divider style={{fontSize:'30px',paddingTop: '60px'}}><Icon type="share-alt" /> 玩玩公用API</Divider>
                 <Weather/>
             </Row>  
         )
