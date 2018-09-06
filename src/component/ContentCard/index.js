@@ -3,7 +3,7 @@ import './index.less';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Card,Button,Icon } from 'antd';
-import {Redirect} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 
 class ContentCard extends Component {
@@ -12,7 +12,7 @@ class ContentCard extends Component {
   }
 
   handleClick = () => {
-    this.context.router.history.push("/otherPath")
+    this.props.history.push("/article")
   }
 
     render(){
@@ -21,7 +21,7 @@ class ContentCard extends Component {
             <Card loading={this.state.loading} title="Card title">
               Whatever content
             </Card>
-              <li><Icon type='star-o' style={{ marginRight: 8 }} />156</li>
+              <li><Icon type='eye-o' style={{ marginRight: 8 }} />156</li>
               <li><Icon type='like-o' style={{ marginRight: 8 }} />156</li>
               <li><Icon type='message' style={{ marginRight: 8 }} />156</li>
             <Button type="dashed" type="danger" onClick={this.handleClick}>阅读全文</Button>
@@ -31,4 +31,4 @@ class ContentCard extends Component {
 }
 export default connect((state)=>{
     return state;
-})(ContentCard)
+})(withRouter(ContentCard))

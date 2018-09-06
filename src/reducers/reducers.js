@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 import indexReducer from './indexReducer'
-import statisticsReducer from './statisticsReducer'
+import weatherReducer from './weatherReducer'
+import articleReducer from './articleReducer'
 
 export default combineReducers({
   indexReducer,
-  statisticsReducer
+  weatherReducer,
+  articleReducer
 })

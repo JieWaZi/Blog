@@ -6,6 +6,11 @@ import { Menu} from 'antd';
 import { Link } from 'react-router-dom'
 
 class NavigationBar extends Component {
+
+  componentDidMount(){
+    console.log(this.props.match)
+  }
+  
   state = {
     current: 'index',
   }
@@ -27,14 +32,14 @@ class NavigationBar extends Component {
               <Menu.Item key="index" className='item'>
               <Link to='/'>首页</Link>
               </Menu.Item>
-              <Menu.Item key="app" className='item'>
-                <Link to='/article'>技术</Link>
+              <Menu.Item key="listArticle" className='item'>
+                <Link to='/listArticle'>技术</Link>
               </Menu.Item>
-              <Menu.Item key="setting" className='item'>
-                资源
+              <Menu.Item key="resource" className='item'>
+                <Link to='/resource'>资源</Link>
               </Menu.Item>
-              <Menu.Item key="all" className='item'>
-                其他
+              <Menu.Item key="other" className='item'>
+                <Link to='/other'>其他</Link>
               </Menu.Item>
             </Menu>
           );

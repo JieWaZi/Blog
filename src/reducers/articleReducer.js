@@ -1,11 +1,11 @@
 const init_State = {
-    weathers: [],
+    mardown: '',
 }
 
 export default (state = init_State, action) =>  {
     switch (action.type) {
-    case "Statistics/SET":
-        return {...state,weathers:action.payload}
+    case "Article/SET":
+        return {...state,mardown:action.payload}
       default:
         return state
     }
