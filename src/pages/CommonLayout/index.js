@@ -2,7 +2,7 @@ import './index.less';
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Layout,Row,Col,Divider,Icon,BackTop, Switch } from 'antd';
+import { Layout,Row,Col,BackTop } from 'antd';
 import NavigationBar from '../../component/NavigationBar/index'
 import IndexPage from '../IndexPage/index'
 import ArticlePage from '../ArticlePage/index'
@@ -14,10 +14,6 @@ import PropTypes from 'prop-types'
 const { Footer } = Layout
 
 class CommonLayout extends Component {
-
-    componentDidMount(){
-        console.log(this.props.match)
-    }
 
     static contextTypes = {
         router: PropTypes.object
@@ -37,7 +33,7 @@ class CommonLayout extends Component {
                     </Col>
                 </Row>
                 <Route exact path="/" component={IndexPage} />
-                <Route exact path="/article" component={ArticlePage}/>
+                <Route exact path="/article/:article" component={ArticlePage}/>
                 <Route exact path="/listArticle" component={ListArticlePage}/>
                 <Footer className='footer'/>
                 <BackTop />

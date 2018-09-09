@@ -13,7 +13,6 @@ export const fetchWeather = (cityIds) => {
             }).catch(function(err) {
            
             });
-        console.log(result)
         dispatch({"type":"Weather/SET","payload":result})
     } 
 }

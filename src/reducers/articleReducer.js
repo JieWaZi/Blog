@@ -1,11 +1,14 @@
 const init_State = {
-    mardown: '',
+    article: '',
+    articles:[]
 }
 
 export default (state = init_State, action) =>  {
     switch (action.type) {
-    case "Article/SET":
-        return {...state,mardown:action.payload}
+    case "GET/ARTICLE":
+        return {...state,article:action.payload}
+    case "LIST/ARTICLES":
+        return {...state,articles:action.payload}
       default:
         return state
     }

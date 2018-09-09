@@ -4,19 +4,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PersonInformation from '../../component/PersonInformation/index'
 import * as actions from '../../actions/articleAction';
-import { List, Avatar, Icon,Row,Col } from 'antd';
-
-
-const listData = [];
-    for (let i = 0; i < 23; i++) {
-    listData.push({
-        href: '/article',
-        title: `ant design part ${i}`,
-        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-        description: 'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-        content: 'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-    });
-    }
+import { List, Avatar, Icon,Row,Col,Tag } from 'antd';
+import {withRouter} from 'react-router-dom';
+import _ from 'lodash';
+import ReactMarkdown from 'react-markdown';
 
 const IconText = ({ type, text }) => (
         <span>
@@ -27,8 +18,39 @@ const IconText = ({ type, text }) => (
 
 class ListArticlePage extends Component {
 
+    state = {
+        index:0,
+        size:7
+    }
+
     componentDidMount(){
-        this.props.dispatch(actions.getArticle())
+        this.props.dispatch(actions.listArticles({pageIndex:this.state.index,pageSize:this.state.size}))
+    }
+
+    replaceText =(str) => {
+        return str.replace(new RegExp("<br/>","g"),'\n')
+    }
+
+    renderList = (records) => {
+        const listData = [];
+        _.forEach(records,(value) =>{
+            const tags=[]
+            _.forEach(value.tag.split(','),(value)=>{
+                tags.push(<Tag key={value} color="gold">{value}</Tag>)
+              })
+            listData.push({
+                click: ()=>{this.props.history.push("/article/"+value.filePath)},
+                title: value.title,
+                coverImg: "/src/resource/image/"+(value.coverImg===undefined?'default.jpg':value.coverImg),
+                tags: tags,
+                content: <ReactMarkdown className="abstract" source={this.replaceText(value.abstract)}/>,
+                date:  value.createdAt,
+                readCount: value.readCount===undefined ? 0 : value.readCount,
+                favCount: value.favouriteCount===undefined ? 0 : value.favouriteCount,
+                commentCount: value.commentCount===undefined ? 0 : value.commentCount
+                });
+        })
+        return listData
     }
 
     render(){   
@@ -42,19 +64,19 @@ class ListArticlePage extends Component {
                 onChange: (page) => {
                     console.log(page);
                 },
-                pageSize: 8,
+                pageSize: 7,
                 }}
-                dataSource={listData}
+                dataSource={this.renderList(this.props.articleReducer.articles)}
                 renderItem={item => (
                 <List.Item
                     key={item.title}
-                    actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
-                    extra={<img width={272} alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}
+                    actions={[<IconText type="eye-o" text={item.readCount} />, <IconText type="like-o" text={item.favCount} />, <IconText type="message" text={item.commentCount} />,item.date.substring(0,10)]}
+                    extra={<img width={272} alt="coverImg" onClick={item.click} src={item.coverImg} />}
                 >
                     <List.Item.Meta
-                    avatar={<Avatar src={item.avatar} />}
-                    title={<a href={item.href}>{item.title}</a>}
-                    description={item.description}
+                    avatar={<Avatar src={item.avatar}  />}
+                    title={<a onClick={item.click}>{item.title}</a>}
+                    description={item.tags}
                     />
                     {item.content}
                 </List.Item>
@@ -71,4 +93,4 @@ class ListArticlePage extends Component {
 
 export default connect((state)=>{
     return state;
-})(ListArticlePage)
+})(withRouter(ListArticlePage))

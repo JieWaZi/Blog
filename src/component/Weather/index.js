@@ -1,5 +1,8 @@
 import './index.less';
 
+import { OverPack } from 'rc-scroll-anim';
+import TweenOne from 'rc-tween-one';
+import QueueAnim from 'rc-queue-anim';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Row, Col,Card,Tag } from 'antd';
@@ -82,7 +85,6 @@ class Weather extends Component {
     }
 
     renderReport = (records) => {
-        console.log(records)
         const cards = []
         let index = 0
         let cover = {}
@@ -103,11 +105,9 @@ class Weather extends Component {
                     description={
                         <div>
                             <p>{record.weather}</p>
-                            <p>
-                                <Tag color="cyan" style={{marginTop: '0px'}}>
-                                    {record.minTemperature}~{record.maxTemperature}°C
-                                </Tag>
-                            </p>
+                            <Tag color="cyan" style={{marginTop: '0px'}}>
+                                {record.minTemperature}~{record.maxTemperature}°C
+                            </Tag>
                             <p style={{marginTop: '8px'}}>紫外线强度指数:{record.img > 4 ? '弱' :'强'}</p> 
                         </div>
                     }
@@ -120,15 +120,19 @@ class Weather extends Component {
         index=0
         _.forEach(cards,function(card){
             if (index===0){
-                newCard.push(<Col xs={6} xl={6}>{card}</Col>)
+                newCard.push(<Col key={index} xs={6} xl={6}>{card}</Col>)
             }else{
-                newCard.push(<Col xs={3} xl={3}>{card}</Col>)
+                newCard.push(<Col key={index} xs={3} xl={3}>{card}</Col>)
             }
             index++;
         })
         return (
             <div className='report'>
-                {newCard}
+                <OverPack playScale={0.2} >
+                    <QueueAnim key="queue" leaveReverse>
+                        {newCard}
+                    </QueueAnim>
+                </OverPack>
             </div>
         )
     }
@@ -138,7 +142,7 @@ class Weather extends Component {
             <div className='chart'>
                 <Row type="flex" justify="space-around">
                     <Col xs={24} sm={24} md={7} xl={7}><ReactEcharts option={this.renderWeatherLinear(this.props.weatherReducer.weather)} /></Col>
-                    <Col xs={24} sm={24} md={13} xl={13} className=''>{this.renderReport(this.props.weatherReducer.weather.dayWeather)}</Col>
+                    <Col xs={24} sm={24} md={13} xl={13}>{this.renderReport(this.props.weatherReducer.weather.dayWeather)}</Col>
                 </Row>
             </div>
         )

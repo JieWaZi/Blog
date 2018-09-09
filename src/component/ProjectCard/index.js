@@ -24,7 +24,7 @@ class ProjectCard extends Component {
          </a>
         cards.push(
           <Col key={value.name} xs={24} sm={10} lg={5} xl={5} xxl={5} >
-            <Parallax animation={{ scale: 1 }} style={{ transform: 'scale(0.3)' }}>
+            <Parallax animation={{ scale: 1 }} style={{ transform: 'scale(0.8)' }}>
               < Card 
                 hoverable
                 title={title}

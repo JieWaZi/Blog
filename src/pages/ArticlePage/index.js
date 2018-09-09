@@ -8,12 +8,13 @@ import PersonInformation from '../../component/PersonInformation/index'
 import {Row,Col,Divider} from 'antd'
 import { Markdown } from 'react-markdown-reader';
 import * as actions from '../../actions/articleAction';
+import {withRouter} from 'react-router-dom';
 
 
 class ArticlePage extends Component {
 
     componentDidMount(){
-        this.props.dispatch(actions.getArticle())
+        this.props.dispatch(actions.getArticle(this.props.match.params.article))
     }
 
     render(){   
@@ -22,7 +23,7 @@ class ArticlePage extends Component {
             <Col xs={24} sm={24} md={24} lg={{span:15,offset:2}} xl={{span:15,offset:2}}>
                 <div className='markdown'>
                     <Markdown>
-                        {this.props.articleReducer.mardown}
+                        {this.props.articleReducer.article}
                     </Markdown>
                     <Divider>END</Divider>
                     <Dination />
@@ -38,4 +39,4 @@ class ArticlePage extends Component {
 
 export default connect((state)=>{
     return state;
-})(ArticlePage)
+})(withRouter(ArticlePage))

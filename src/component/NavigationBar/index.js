@@ -6,10 +6,6 @@ import { Menu} from 'antd';
 import { Link } from 'react-router-dom'
 
 class NavigationBar extends Component {
-
-  componentDidMount(){
-    console.log(this.props.match)
-  }
   
   state = {
     current: 'index',

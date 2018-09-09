@@ -9,13 +9,13 @@ class Dination extends Component {
 
 state = {
     show: false,
-    text:'打赏'
+    text:'点击打赏'
   };
 
 clickHandler = () => {
     this.setState({
       show: !this.state.show,
-      text: this.state.show ? '打赏':'稍后打赏',
+      text: this.state.show ? '点击打赏':'稍后打赏',
     });
   }
 
