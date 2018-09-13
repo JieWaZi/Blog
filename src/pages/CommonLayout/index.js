@@ -9,7 +9,8 @@ import ArticlePage from '../ArticlePage/index'
 import ListArticlePage from '../ListArticlePage/index'
 import Slide from '../../component/Slide/index'
 import {Route} from 'react-router-dom';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import BlogFooter from '../../component/Footer'
 
 const { Footer } = Layout
 
@@ -35,7 +36,7 @@ class CommonLayout extends Component {
                 <Route exact path="/" component={IndexPage} />
                 <Route exact path="/article/:article" component={ArticlePage}/>
                 <Route exact path="/listArticle" component={ListArticlePage}/>
-                <Footer className='footer'/>
+                <BlogFooter className='footer'/>
                 <BackTop />
             </Layout>
 

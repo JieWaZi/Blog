@@ -10,7 +10,7 @@ import * as actions from '../../actions/articleAction'
 class Content extends Component {
 
   componentDidMount(){
-    this.props.dispatch(actions.listArticles({pageIndex:0,pageSize:3}))
+    this.props.dispatch(actions.listArticles({pageIndex:0,pageSize:4}))
   }
 
   renderContentCard = (records) => {
