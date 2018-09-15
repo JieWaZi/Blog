@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack= require('webpack');
-const renderer = require('react-markdown').renderer;
 const markedRenderer = require('marked').renderer;
 
 module.exports = {

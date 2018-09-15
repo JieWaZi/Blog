@@ -7,6 +7,7 @@ import NavigationBar from '../../component/NavigationBar/index'
 import IndexPage from '../IndexPage/index'
 import ArticlePage from '../ArticlePage/index'
 import ListArticlePage from '../ListArticlePage/index'
+import ResourcePage from '../ResourcePage/index'
 import Slide from '../../component/Slide/index'
 import {Route} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -36,6 +37,7 @@ class CommonLayout extends Component {
                 <Route exact path="/" component={IndexPage} />
                 <Route exact path="/article/:article" component={ArticlePage}/>
                 <Route exact path="/listArticle" component={ListArticlePage}/>
+                <Route exact path="/resource" component={ResourcePage}/>
                 <BlogFooter className='footer'/>
                 <BackTop />
             </Layout>
